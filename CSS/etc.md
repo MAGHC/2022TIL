@@ -13,3 +13,16 @@ backface-visibility: hidden;
 ### :link :visited
 
 링크 에 접속전 / 접속후
+
+### :not(:last-child)
+
+:not(:last-child){
+margin-right : 20px;
+
+}
+
+하게 되면 last-child 에서만 제외하고 margin-right를 적용한다.
+
+### [class^="col-"]
+
+컬리브라켓으로 ^= 로 하면 해당문자열로 시작하는 모든 클래스를 다 선택할수있음
