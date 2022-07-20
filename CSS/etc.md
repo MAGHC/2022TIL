@@ -26,3 +26,43 @@ margin-right : 20px;
 ### [class^="col-"]
 
 컬리브라켓으로 ^= 로 하면 해당문자열로 시작하는 모든 클래스를 다 선택할수있음
+
+### width 와 max-width의 차이
+
+width 속성과 max-width는 비슷해보이지만
+width 는 요소크기를 100%로 유지
+max-width 는 기본요소 크기 이상으로는 크기가 조절되지 않음
+
+### Emmet lorem
+
+알다시피 lorem 어쩌고 라틴어 나오는 그 텍스트 단을 써먹을수있다
+
+### html 특수 심볼
+
+&rarr
+
+=> 이런식으로 표현 가능
+
+https://css-tricks.com/snippets/html/glyphs/
+
+여기서 확인
+
+### 작은 단위의 unit 이라면 일일이 반응형 단위를 쓰지말 것
+
+아주 작은 단위의 unit 이라면 1px 2px 가지고도 반응형을 쓰면 두배 차이가 나게됨으로 굳이 일일이 아주작은 단위에까지 반응형 단위를 쓰지말것
+
+### skew
+
+기울기. deg
+
+### text-align
+
+text-align 은 부모요소에다가 적용해야지 가운데로 정렬이된다.. 뭣도 모르고 텍스트 자체에다가썼는데 안되서 살짝 고생
+
+### -webkit-background-clip
+
+-webkit-background-clip:text
+
+하게되면 background 가 text에 맞춰서 짤리게 된다.
+
+참고로 color: transparent를 해줘야 color 가 투명해지면서 배경색이 드러나게된다.
