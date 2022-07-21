@@ -66,3 +66,17 @@ text-align 은 부모요소에다가 적용해야지 가운데로 정렬이된�
 하게되면 background 가 text에 맞춰서 짤리게 된다.
 
 참고로 color: transparent를 해줘야 color 가 투명해지면서 배경색이 드러나게된다.
+
+### outline
+
+테두리선 border 보다 밖의 선의 개념 인듯
+outline: 1.5rem solid $color-primary;
+
+border랑 비슷함 설정값
+
+outline-offset: 2rem;
+border와 outline 의 패딩 값이라고 할까
+
+### 이미지
+
+이미지 같은 경우에는 가능한 백분율로 표시 뷰포트에 맞게 멋지게 확장됨
