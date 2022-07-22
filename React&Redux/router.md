@@ -27,3 +27,54 @@ use navigate 를 통해 url 설정
 ### next back button
 
 별거 없음 id값 parseint 가 유의할점 나머지는 그냥 생각대로 하면됨
+
+### 페이지 네이션
+
+구현 플로우는 동적 라우팅 이랑 비슷함
+
+버튼 의 핸들 함수 부터 디자인 onclick
+
+해당 버튼의 인덱스 부모 props 에서 업데이트.
+
+offset - > 시작 지점
+
+limit -> 보여줄 갯수
+
+해서 쿼리문 작성
+
+`?limit=20&offset=0`
+
+알다시피 쿼리문은 ? 로 시작하고 &가 다음 옵션 같이사용할것 적어줌
+
+location = useLocation 을 사용하여 해당 주소의 search 값을 가지고옴.
+
+click 시 해당 useEffect에 데이터 패칭 .
+
+의존성 배열에 location.search 를 넣어주면 동적라우팅 마냥 매번 변경됨.
+
+다만 여기까지만 구현하면
+
+맨처음 화면이 컨텐츠가 100개라면 100개가 다나오는 상태일것임
+
+그래서 || 연산문 을 사용하는데.
+
+알다시피 둘중하나가 true면 그것을 사용함.
+
+아마 구현해놨으면 location.search 가 되어있을텐데 처음에는 비어있음으로 falsy 값일것임
+`?limit=20&offset=$0` 값을 함께 추가 해주기
+
+```React
+
+ useEffect(() => {
+    fetch(`http://localhost:8000/users${location.search || `?limit=20&offset=$0`}`)
+      .then((res) => res.json())
+      .then((res) => setUsers(res.users));
+  }, [location.search]);
+
+  const updateOffset = (a) => {
+    const limit = 20;
+    const offset = a * limit;
+    const queryString = `?limit=${limit}&offset=${offset}`;
+    navigate(`${queryString}`);
+  };
+```
