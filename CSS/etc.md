@@ -88,3 +88,15 @@ border와 outline 의 패딩 값이라고 할까
 ### -moz-
 
 파이어폭스에서도 사용할수있게.
+
+### background-blend-mode
+
+    배경과 혼합하는 방식에 대해서 설정 가능 마치 포토샵 처럼
+
+    ie 나 edge에선 호환이 안됨으로 크롬 개발자도구에서 속성확인
+
+background-blend-mode: screen;
+
+원래는 필요없는데 카드 이중 구조 만들고
+
+backface visiblity hidden 해놔서 사용
