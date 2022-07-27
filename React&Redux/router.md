@@ -63,18 +63,17 @@ click 시 해당 useEffect에 데이터 패칭 .
 아마 구현해놨으면 location.search 가 되어있을텐데 처음에는 비어있음으로 falsy 값일것임
 `?limit=20&offset=$0` 값을 함께 추가 해주기
 
-```React
+```js
+useEffect(() => {
+  fetch(`http://localhost:8000/users${location.search || `?limit=20&offset=$0`}`)
+    .then((res) => res.json())
+    .then((res) => setUsers(res.users));
+}, [location.search]);
 
- useEffect(() => {
-    fetch(`http://localhost:8000/users${location.search || `?limit=20&offset=$0`}`)
-      .then((res) => res.json())
-      .then((res) => setUsers(res.users));
-  }, [location.search]);
-
-  const updateOffset = (a) => {
-    const limit = 20;
-    const offset = a * limit;
-    const queryString = `?limit=${limit}&offset=${offset}`;
-    navigate(`${queryString}`);
-  };
+const updateOffset = (a) => {
+  const limit = 20;
+  const offset = a * limit;
+  const queryString = `?limit=${limit}&offset=${offset}`;
+  navigate(`${queryString}`);
+};
 ```
