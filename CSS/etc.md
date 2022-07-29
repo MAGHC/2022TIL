@@ -100,3 +100,26 @@ background-blend-mode: screen;
 원래는 필요없는데 카드 이중 구조 만들고
 
 backface visiblity hidden 해놔서 사용
+
+### blur
+
+filter:blur(3px);
+
+흐름 효과 활용 뭔가 또 css만의 트릭을 쓰는걸까 했는데 그런거없었다
+
+### :hover 시 다른 class 애니메이션 효과
+
+ex)&:hover &image{
+
+}
+
+그냥 옆에다가 쓰면됨
+
+### shape-outside
+
+-webkit-shape-outside: circle(50% at 50% 50%);
+shape-outside: circle(50% at 50% 50%);
+-webkit-clip-path: circle(50% at 50% 50%);
+clip-path: circle(50% at 50% 50%);
+
+와같이 쓰면 이미지도 동그랗게 해당 태그의 박스 shpae 도 동그랗게 잡혀서 옆에 컨텐츠들도 동그란 테두리에 맞게 배치된다.
