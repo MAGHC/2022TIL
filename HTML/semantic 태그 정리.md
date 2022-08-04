@@ -25,3 +25,11 @@ form 에 action 속성은 제출됬을때 사용할 js 파일 등을 말한다.
 input id 와 label for 속성을 맞추면 해당 input 에 대한 label 만들수있는데
 
 label 을 클릭하면 해당 인풋으로 포커싱 된다 .
+
+### 특수 심볼
+
+&rarr &nbsp 같은것들
+
+https://css-tricks.com/snippets/html/glyphs/
+
+사이트 참고
