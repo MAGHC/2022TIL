@@ -12,3 +12,5 @@ npx create-expo-app my-app
 아무튼 expo 어플 도 깔고
 
 script 확인해서 expo start 해서 같은 네트워크 사용하면 화면 확인 가능
+
+아 중요한걸 안적었었네 커맨드 라인에서 expo login 으로 로그인 해줘야됨
