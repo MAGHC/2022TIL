@@ -24,4 +24,20 @@ css 속성 처럼 쓰면 되는데 속성명은 js 처럼 카멜케이스로 작
 
 <View style={stylesheet.해당스타일}>
 
-### 써드 파티 패키지
+### layout
+
+리액트 네이티브의 레이아웃은 flexbox 의 웹 사용과 거의 유사하다.
+
+단지 차이가 있다면 display:flex 를 일일 이 선언할 필요가없이 다 되어있다고 보면 된다.
+
+그리고 flex Direction 의 기본값이 column 이다.
+
+```js
+<view style={{ flex: 1 }}>
+  <view style={{ flex: 1 }}></view>
+  <view style={{ flex: 1 }}></view>
+  <view style={{ flex: 1 }}></view>
+</view>
+```
+
+와 같은 형태로 레이아웃을 잡으면 알아서 1:1:1 비율로 먹게 된다.
