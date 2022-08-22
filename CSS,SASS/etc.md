@@ -176,3 +176,19 @@ a가 b 보다 먼저등장하지않으면 선택안됨
 Transform-origin 값을 설정함에 따라 어디를 기점으로 rotate 시킬건지를 지정할 수 있다.
 
 지정하지않으면 가운데 기준으로 돈다 .
+
+### column
+
+column-count: 2
+
+로 단락을 나눌 수 있다. 개멋있다
+
+column-rule: 1px solid black;
+
+로 단락 사이에 border를 생성할 수 있다.
+
+hyphens: auto;
+
+로 자동으로 hypen을 넣어줄 수 도 있지만 이게 제대로 되려면
+
+html 시작 부분에 lang ="en" 처럼 언어 가 제대로 설정되어있어야 되 서 내생각에 hypens 은 별 큰 의미는 없는 듯 하다.
