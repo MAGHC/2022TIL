@@ -1,4 +1,4 @@
-### entries()
+### entries() 배열
 
 Array.entries()
 
@@ -40,3 +40,30 @@ console.log(arr.entries());
 Object [Array Iterator] {}
 
 이런식으로 나온다.
+
+### entreis () 오브젝트
+
+["thy",{open:12,close:21}]
+
+같은 형태로 배열로 변환
+
+key , value
+
+````js
+const object1 = {
+a: 'somestring',
+b: 42
+};
+for (const [key, value] of Object.entries(object1)) {
+console.log(`${key}: ${value}`);
+}
+// expected output:
+// "a: somestring"
+// "b: 42"
+For 에서 구조분해할당하는거. 신기
+
+    For (const key {open, close}of openinghours)
+
+    ```js
+
+````
