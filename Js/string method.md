@@ -114,3 +114,80 @@ Str.split(' ') 공백으로 구분하여 반환
 Split('')문자하나하나 다 분해
 
 두번째 인수로 배열의 길이 정할수있음
+
+### 복습 + 활용및 사용
+
+```js
+
+indexOf = > return number
+lastIndexOf -> return nubmer // 해당 글자의 마지막 해당하는 위치
+
+
+slice() 인자에서 부터 자름  기본문자열을 변경하지 변수에 할당한다면 잘려진 것이 변수 들어감 기존문자열아님
+
+
+slice() 하나만 받을수도있고 두개받을수도있음 두개는 각각 시작 / 끝 한개는 0부터 해당 시점까지 짜름
+
+
+마지막은 -1
+
+ 이를 활용한 스페이싱있을 때 첫번째 단어 마지막 단어 찾기
+
+
+const str = 'my name is kim'
+
+console.log(str.slice(0, str.indexOf('')))
+console.log(str.slice(0, str.lastIndexOf('')+1))
+
+
+
+인자로 음수도 넣을 수 있음
+
+
+const a = 'tap air portugal'
+
+console.log(a.slice(1,-1)) // 'ap air portuga'
+
+
+toLowerCase = 소문자
+
+toUpperCase = 대문자
+
+
+
+이름 자동 앞글자만 대문자 변환
+
+		const name = kIm
+
+const lowername = name.toLowerCase()
+
+const corrctName = lowername[0].toUpperCase() + lowername.slice(1)
+
+
+trim () 문자 양끝의 공백 제거
+
+
+replace() 첫번쨰인자. 바꾸고 싶은것 두번째인자 . 바꿀것
+
+replace => return string
+
+문제 ?
+같은단어가 여러개있어도 하나만 바꿈
+
+
+
+replaceAll () 사용
+
+정규식도있고. g 플래그 global
+
+
+
+includes()
+startsWith()
+endsWith()
+
+=> true , false 반환
+
+
+
+```
