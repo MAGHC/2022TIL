@@ -190,4 +190,86 @@ endsWith()
 
 
 
+split() 구분자를 인자에 전달하면 => 나눠서 배열로 return []
+
+보통은 ('')
+
+
+
+const [lastName, firstName]= 'kim jungsoo'.split('')
+
+구조분해할당.
+
+
+
+join('') 구분자를 인자에 전달하면 => 하나의 문자열로 합침
+
+
+
+첫번째 글자만 대문자로 바꾸는 fucntion 만들기
+
+
+const translateFirst = (word) => {
+  const words = word.split(" ");
+  const result = [];
+
+  for (const item of words) {
+    console.log(words);
+    console.log(item[0]);
+    result.push(item.replace(item[0], item[0].toUpperCase()));
+  }
+
+  console.log(result.join());
+};
+
+console.log(translateFirst("kim jung soo"));
+
+
+
+string.padStart(24,"+")
+
+
+string.padEnd(24,'+')
+
+padding
+
+length 24 일때까지 해당 문자의 앞/ 뒤에 두번째인자를 추가
+
+string.padStart(24,"+").pad(30,'-')
+와 같이도 사용가능
+
+
+
+신용카드의 masking 기능 만들기
+
+
+const maskedNumber = (number) =>{
+const str = String(number)
+const last = str.slice(-4)
+return last.padStart(str.length ,'*')
+
+}
+
+console.log(maskedNumber (12341241413213))
+
+
+
+repeat() 인자로 숫자를 넣으면 그숫자만큼 문자가 반복됨.
+
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.replaceAll('_', ' ').split(';');
+  const output = `${type}, ${from},${to},${time}`;
+
+  console.log(output);
+}
+
+
+
+
+
+
+
 ```
