@@ -214,3 +214,89 @@ server.listen(3000);
 
 
 ```
+
+- 약간의 리팩토링(export)
+
+router 파일 을 분리시켜보자
+
+```js
+라우터.js;
+
+const fs = require("fs");
+
+const requestHandler = (req, res) => {
+  const url = req.url;
+  const method = req.method;
+
+  if (url === "/") {
+    res.write("<html lang=ko>");
+    res.write("<head><title>send Message </title></head>");
+    res.write("<body><form action=/message method=POST><input name=message type=text><button type=submit>send</button></input></form></body>");
+    res.write("</html>");
+    return res.end();
+  }
+
+  if (url === "/message" && method == "POST") {
+    const body = [];
+    req.on("data", (event) => {
+      console.log(event);
+      body.push(event);
+    });
+    req.on("end", () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split("=")[1];
+      fs.writeFile("message.txt", message, (err) => {
+        //writeFileSync 였으나 변경된 이유는 파일싱크는 await 처럼 이 코드가 끝날때까지 다음 코드의 실행을 막는데 지금은 text 파일이니까 상관없지만 엄청나게 큰 파일이게 될 경우 동작의 흐름을 막을 수 있다.fileSync와 그냥 writeFile의 차이점은 세번째 인수로 완료가 된 뒤의 콜백을 실행하는데 원래는 아래에있는 statuscode 설정되 setHeader 를 안에다가 넣어준다 errror 핸들도 가능하지만 지금은 에러날게없어서 생략
+        res.statusCode = 302;
+        res.setHeader("Location", "/");
+        return res.end();
+      });
+    });
+  }
+  res.setHeader("Content-Type", "text/html");
+  res.write("<html lang=ko>");
+  res.write("<head><title>test!</title></head>");
+  res.write("<body><h1>first node </h1></body>");
+  res.write("</html>");
+  res.end();
+};
+
+module.exports = { handler: requestHandler, somText: "some hard coding" }; // 모듈 export 문법  module.exports = requesHandler 로 하면 import routes로 하고 그냥 쓰면 되고 위와같이쓰면 아래 파일과 같이 닷 노테이션으로 접근하여 사용하면된다. somText는 테스트용
+```
+
+```js
+server or app.js
+
+const http = require("http");
+
+const routes = require("./routes");
+const server = http.createServer(routes.handler);
+
+server.listen(3000);
+
+
+```
+
+### 노드js 의 실행환경
+
+이벤트루프가 있고. 그이벤트루프 가
+
+이벤트 루프가있고
+
+이벤트 루프가
+
+타이머랑 보류 콜백 들 poll(즉시실행) 되는 애들 풀을 계속 돌음 = >check => 그다음 closecallback
+
+process.exit 을 만나야만 꺼진다.
+
+아니면 계속 저렇게돌음
+
+타이머 -> pending -> poll - > check(excute setimmediate)->close(excute all close event)->
+
+노드 js 는 non-blocking 방식으로 실행된다 = 비차단
+
+많은 콜백 및 콜백이벤트를 등록
+
+이벤트루프가 계속돌면서 확인
+
+이런 비동기 특성을 이해하지 못한다면 코드가 즉시 실행되지 않아서 생기는 문제를 피할수 없다.
