@@ -78,3 +78,26 @@ useLogin=(body)=>{
 
 
 ```
+
+### axios.interceptors
+
+https://axios-http.com/kr/docs/interceptors
+
+인터셉트 가 가능하다
+axios.interceptors.response.use()
+
+의 형태로 모든 성공시 response 에서 할 반응 을 기본적으로 내가 설정해 줄 수 있다.
+
+```ts
+axios.interceptors.response.use(
+	(res) => {
+		if (res.data.token) {
+		   해당 코드
+		}
+	  return res;
+	},
+	(error) => {
+	  return Promise.reject(error);
+	}
+);
+```
