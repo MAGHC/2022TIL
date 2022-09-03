@@ -53,3 +53,13 @@ const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 ```
 
 name 값을 구조 분해할당으로 빼내어서 위와 같이 set 할때 원래 useState 의 키값과 맞춰서 넣을수있었다.
+
+### meta
+
+헤드는 웹사이트에 대한 정보가 있는곳
+
+<head>
+<meta name="description" content="설명">
+</head>
+
+같은 형태로 설명 추가 가능
