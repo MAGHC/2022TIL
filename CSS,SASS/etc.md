@@ -213,3 +213,28 @@ mixin 이 안먹은 이유는
 `display:flex, justify-content:center,`
 
 와 같이 적었기 때문이다 mixin 은 금방찾았다 color 의 오류를 잡아내고 나자마자 아 그럼 이건 그거 때문에 안됬겠네 하고 문제점이 잘 보였다 한동안 scss만 쓰다가 스타일 컴포넌트 다시 쓰니까 좀 햇갈리긴하다.
+
+### variables
+
+:root{
+
+--text-size: 16px;
+
+}
+
+과 같이 사용 가능하다 해당 클래스 내에서만 선언할수도있는데 보통은 루트에 선언하여 사용한다고 한다.
+
+활용으로 미디어 쿼리안에
+
+@media screen and(max-widht:768px){
+
+    :root{
+        --text-size:16px;
+    }
+
+}
+같이 해놓고 활용 가능하며
+
+--로 정의 위의 상태는 정의만해놓은 상태고
+
+사용은 var(--text-size) 로한다
