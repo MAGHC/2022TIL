@@ -37,3 +37,36 @@ all 과 사용방법은 똑같음
 다만 둘중 하나를 레이스 시킨다는 의미인듯
 
 먼저 들어오는거 먼저출력.
+
+### pending
+
+const request = fetch(url)
+
+console.log(request)// promise{<pending>}
+
+pending = 보류중 (백그라운드에서 여전히 실행중)
+settled = 끝남 , fulfilled (성공) , reject(실패)
+
+콜백 지옥은 삼각형 형태로 점점 depth 가 들어가지만
+
+promise 는 평면 체인
+
+### 에러 핸들링 / finally
+
+에러핸들링
+
+1.
+
+fetch(url).then(res=>res.json(),err=>alert(err))
+
+2. 마지막에 catch
+
+then().then().then().catch(err=>alert(err))
+
+finally
+
+무슨일이 있던지 간에 항상 호출. 그닥 항상 유용하진 않음
+
+finally 를 사용하는 좋은 예시는 로딩 스피너를 숨길때
+
+로딩스피너는 에러가 나든 성공을 했든 아무튼 result 를 받으면 사라지기 때문
