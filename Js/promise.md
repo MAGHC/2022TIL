@@ -70,3 +70,32 @@ finally
 finally 를 사용하는 좋은 예시는 로딩 스피너를 숨길때
 
 로딩스피너는 에러가 나든 성공을 했든 아무튼 result 를 받으면 사라지기 때문
+
+### promise.allSettled
+
+es2020 에서 생긴것
+promise가 reject 되던 말던 결과를 배열로 리턴함
+
+```js
+Promise.allSetteld([
+Promise.resolve('success')
+Promise.reject('ERror')
+Promise.resolve('another Success')
+]).then(res=>console.log(res))
+
+//[{...},{...},{...}]
+
+
+```
+
+### promise.any
+
+promise.any
+
+es2021
+
+race랑 비슷함 먼저 완료된거 반환
+
+차이점은 reject를 무시함
+
+항상 resolve 만 반환 뭐 어찌되었건 중요한건 all 과 race 정도
