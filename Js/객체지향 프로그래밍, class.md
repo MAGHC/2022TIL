@@ -96,3 +96,5 @@ this.price = price;
 새로운 인스턴스 생성을 위해서는 new 키워드가 필요하다!
 
 new 키워드는 constructor 메서드를 호출하고 새로운 인스턴스를 리턴해준다
+
+
