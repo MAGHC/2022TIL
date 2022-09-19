@@ -84,3 +84,61 @@ Person.prototype.species= '호모사피엔스'
 console.log(kim.species)//호모사피엔스
 
 ```
+
+### 2
+
+이전것에 이어서.
+
+const Person = {
+}
+
+Person.prototype.calcAge = function(){
+console.log(2022-this.birthYear)}
+
+kim.**proto** // calcAge :f  
+kim.**proto**.**proto** // hasOwnProperty 같은것들
+kim.**proto**.**proto**.**proto** // null
+
+const arr = [213,412,214,214,241] //new Array ==== []
+arr.**proto** // fill, concat , find ,등등 method 들
+
+모든 배열은 이 메서드들을 프로토 타입에서 상속한다.
+
+arr.\_\_proto === Array.prototype // true
+
+Array.prototye.unique = function(){
+return [...new Set(this)]}
+
+arr.unique()
+
+우옹
+
+혼자하는 프로젝트면 모르겠지만 이런 습관을 들이지는 말것..
+
+다음 버전의 자바스크립트가 같은 메서드를 추가할 수도있음.
+
+버그를 유발할수있음
+
+```js
+
+class Person {
+constructor(firstName, birth) {
+this.firstName = firstName
+this.birth = birth
+
+}
+
+calcAge(){
+console.log(2022-this.birth)
+}
+}
+
+const kim = new Person('kim', 1995)
+
+클래스는 호이스팅 되지않는다.
+
+```
+
+```
+
+```
