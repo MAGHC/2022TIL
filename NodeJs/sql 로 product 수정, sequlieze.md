@@ -200,3 +200,117 @@ where 쿼리 사용
 
 
 ```
+
+### 업데이트
+
+```js
+exports.postEditProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  const updatedTitle = req.body.title;
+  const updatedPrice = req.body.price;
+  const updatedImageUrl = req.body.imageUrl;
+  const updatedDesc = req.body.description;
+  Product.findById(prodId)
+    .then((product) => {
+      product.title = updatedTitle;
+      product.price = updatedPrice;
+      product.description = updatedDesc;
+      product.imageUrl = updatedImageUrl;
+      return product.save();
+    })
+    .then((result) => {
+      console.log("UPDATED PRODUCT!");
+      res.redirect("/admin/products");
+    })
+    .catch((err) => console.log(err));
+};
+
+//삭제
+
+product.destroy();
+```
+
+### mock user 작성
+
+```js
+const Sequelize = require("sequelize");
+const sequelize = require("../util/database");
+
+const User = sequelize.define("user", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  name: Sequelize.STRING,
+  email: Sequelize.STRING,
+});
+
+module.exports = User;
+```
+
+//app.js
+
+```js
+const Product = require("./models/product");
+const User = require("./models/user");
+
+Product.belongsTo(User);
+
+두번째 인수로 관계를 설정할 수 있다.
+
+Product.belongsTo(User, { constrainst: true, onDlete: "CASCADE" });
+
+제약 : true
+사용자를 삭제하면 관련된 모든것을 삭제 .
+
+
+
+이미 제품 테이블을 설정한 상태이기때문에
+
+sequelize
+  .sync({ force: true })
+
+로 강제로 덧붙임
+
+더미유저 작성
+
+sequelize
+  // .sync({ force: true })
+  .sync()
+  .then(result => {
+    return User.findById(1);
+    // console.log(result);
+  })
+  .then(user => {
+    if (!user) {
+      return User.create({ name: 'Max', email: 'test@test.com' });
+    }
+    return user;
+
+    findById를 읽는 미들웨어 작성
+
+app.use((req, res, next) => {
+  User.findById(1)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => console.log(err));
+});
+
+
+이제 이 시점부터 생성되는 모든 새 재품은 로그인 한 사용자와 연결되어야 함
+
+컨트롤러에 postAddproduct 를 변경해야됨
+
+create({}) 에  userId:req.user.id
+
+추가하듯이
+
+연관을 설정하는 특수한 시퀄라이저 메소드
+
+req.user.createProduct()
+
+```
