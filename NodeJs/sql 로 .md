@@ -314,3 +314,50 @@ create({}) 에  userId:req.user.id
 req.user.createProduct()
 
 ```
+
+### model/cart 변경
+
+약간 후회하고있다 node 걍 레파지토리 만들어서 첨부터관리하면 일일이 이렇게 안적어도 커밋내역에 다 남는걸 ; 지금부터 할까 하다가도 좀 멀리온거같기도
+
+아무튼 sql 끝나고 non sql로 가면 고려좀 해봐야겠다
+
+```js
+const Cart = sequelize.define("cart", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+});
+
+
+/model / cartITem 생성
+
+const Sequelize = require('sequelize');
+
+const sequelize = require('../util/database');
+
+const CartItem = sequelize.define('cartItem', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  quantity: Sequelize.INTEGER
+});
+
+module.exports = CartItem;
+
+
+app.js
+
+
+Cart.belongsTo(User);
+
+
+Cart.belongsToMany(Product, { through: CartItem });// 두번째 인수로 연결위치 알려줌
+Product.belongsToMany(Cart, { through: CartItem }); //다 대 다
+
+```

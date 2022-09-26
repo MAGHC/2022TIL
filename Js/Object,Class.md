@@ -237,3 +237,54 @@ lee.__proto__ === PersonProto // true
 object.create 는 사실 클래스를 만드는 방법중에는 가장 안쓰는 방법이지만
 
 class 끼리 프로토타입을 연결하는데에 아주 중요하다고 한다.
+
+### 클래스로 상속하기
+
+```js
+
+
+class Person {
+constructor(fullname,birthyear)
+this.fullname = fullname;
+this.birthyear = birthyear;
+
+calcAge(){
+console.log(`나는 ${2022-birthyear} 살이다`)}
+}
+
+
+super 와 extends 만 있으면 된다.
+class Student extends Person {
+constructor(fullname, birthyear, course)
+
+super(fullname,birthyear) // 언제나 제일 처음 이걸 해야됨
+this.course = course
+}
+
+super는 부모클래스의 생성자 함수다. 확장 받은 부모꺼를 인수에 넣어서 위와같이사용
+
+
+
+class Student extends Person {
+
+}
+
+요상태이기만 해도 상속 작동하긴한다
+
+const kim = new Student(kim,1995) // 생성됨
+
+
+재정의 가능
+
+
+class Student extends Person {
+constructor(fullname, birthyear, course)
+
+super(fullname,birthyear)
+this.course = course
+
+calcAge(){
+console.log('hi')}  // 부모에 있던 메서드 override
+}
+
+```
