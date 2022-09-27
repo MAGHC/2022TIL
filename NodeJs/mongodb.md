@@ -31,3 +31,150 @@ const MongoConnect = (callBack) => {
 
 module.exports = MongoConnect;
 ```
+
+```js
+MongoClient.connect("mongodb+srv://administrator:dlthf214!!@cluster0.aapwhd8.mongodb.net/?retryWrites=true&w=majority")
+
+d여기서
+
+MongoClient.connect("mongodb+srv://administrator:dl412pt!!@cluster0.aapwhd8.mongodb.net/'여기에 데이터 베이스'?retryWrites=true&w=majority")
+
+or
+
+MongoClient.connect("mongodb+srv://administrator:d214!!@cluster0.aapwhd8.mongodb.net/?retryWrites=true&w=majority")
+    .then((res) => {
+      db = res.db('데이터베이스이름');
+
+
+sql 과 달리 데이터베이스나 테이블을 생성할 필요가없다.
+
+
+//util/database
+const mongodb = require("mongodb");
+
+const MongoClient = mongodb.MongoClient;
+
+let db;
+
+const mongoConnect = (callBack) => {
+  MongoClient.connect("mongodb+srv://administrator:q2qe2qdwa!!@cluster0.aapwhd8.mongodb.net/?retryWrites=true&w=majority")
+    .then((res) => {
+      db = res.db();
+      callBack(res);
+    })
+    .catch((err) => console.err(err));
+};
+
+const getDb = () => {
+  if (db) {
+    return db;
+  }
+  throw "no Data";
+};
+
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;
+
+
+//model/util
+
+
+const getDb = require('../util/database').getDb;
+
+class Product {
+  constructor(title, price, description, imageUrl) {
+    this.title = title;
+    this.price = price;
+    this.description = description;
+    this.imageUrl = imageUrl;
+  }
+
+  save() {
+    const db = getDb();
+    return db
+      .collection('products')
+      .insertOne(this) //insertMany()  도잇음
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  static fetchAll() {
+    const db = getDb();
+    return db
+      .collection('products')
+      .find()
+      .toArray()
+      .then(products => {
+        console.log(products);
+        return products;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+}
+
+module.exports = Product;
+
+참고로 id는 몽고db가 자동적으로 생성
+
+
+```
+
+### mongoDb compass(나침반)
+
+몽고 db에서 제공하는 어플리케이션으로
+
+데이터베이스에 연결할수있는 gui 제공
+
+설치후 끄고
+
+mongodb 에서 connect ⇒ compass 뭐시기 처음 db연결할떄처럼 아이디 비번 적는거 복사하고 다시키면 알아서 클립보드읽음
+
+authentication 가서 유저이름 / 비밀번호 설정
+
+### fetchall / 단일 제품 구현
+
+```js
+static fetchAll() {
+    const db = getDb();
+    return db
+      .collection("products")
+      .find()//find({title:book}) 파인드는 프로미스가아니라 소위 cursor를 반환한다
+      .toArray()//자바스크립트 배열로 바꿈 그리고 프로미스를 반환함
+      .then((products) => {
+        console.log(products);
+        return products;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+```
+
+```js
+
+//단일제품
+
+static findById(id) {
+    const db = getDb();
+    return db
+      .collection("products")
+      .find({ _id: id })
+      .next()
+      .then((res) => res)
+      .catch((err) => console.err(err));
+  }
+
+하고 ejs 전부 _id 로 바꿔도 동작안함 바꾸는게 잘못된건 아니고 당연히 해야되는데
+
+mongodb id로 인식할수있게바꿔야됨
+
+.find({ _id: new mongodb.ObjectId(id) }) //mongodb =require('mongodb')
+
+```

@@ -288,3 +288,68 @@ console.log('hi')}  // 부모에 있던 메서드 override
 }
 
 ```
+
+### object.create()로 상속
+
+```js
+const Personproto {
+init(fullname,birthyear){
+this.fullname = fullname;
+this.birthyear = birthyear;}
+
+
+calcAge(){
+console.log(`나는 ${2022-birthyear} 살이다`)}
+}
+
+
+const StudentProto = Object.create(Personproto )
+StudentProto.init = function(fullname,birthyear,course){
+Personproto.init.call(this,firstName,birthYear; this.course= course)}
+
+
+const jay =Object.create(StudentProto )
+
+
+jay.init('jay',2000,'cs')
+
+```
+
+### class 또 다른 예제
+
+```js
+class Account {
+constructor(owner, currency, pin,  ){
+this.owner = owener ;
+this.currency =currency ;
+this.pin = pin ;
+this.movenment = [];
+this.locale = navigator.language;
+
+console.log('계정을만들어주셔서 감사합니다 `${owner} 님`')
+}
+}
+
+const acc1 = new Account('jonas','eur',1111);
+
+//콘솔로그에 ('계정을만들어주셔서 감사합니다 `${owner} 님`') 뜸
+
+//입금
+
+class Account {
+
+deposit(val){
+this.movemnet.push(val)}
+}
+
+withdraw(val){
+this.deposit(-val)}
+}
+
+acc1.deposit(240)
+acc1.withdarw(-140) //movement:[240,-140]
+```
+
+캡슐화 가 기본적으로 의미하는것 : 클래스 내부속성과 메서드를 비공개로 유지
+
+이유 : 외부에서 실수로 건들여서 망가지는 것을 방지

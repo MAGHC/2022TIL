@@ -238,3 +238,15 @@ mixin 이 안먹은 이유는
 --로 정의 위의 상태는 정의만해놓은 상태고
 
 사용은 var(--text-size) 로한다
+
+### background 이미지 넣을 때 유의사항
+
+```css
+#home {
+  background: url("../imgs/background.png");
+}
+
+url 넣을때 주의사항 컴파일되는 css 파일 있는 곳 기준으로 경로 작성해야됨 왜 안되나 했네 ㅅ
+
+
+```
