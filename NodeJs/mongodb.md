@@ -178,3 +178,142 @@ mongodb id로 인식할수있게바꿔야됨
 .find({ _id: new mongodb.ObjectId(id) }) //mongodb =require('mongodb')
 
 ```
+
+### update 구현
+
+```js
+product class 수정
+
+class Product {
+  constructor(title, price, description, imageUrl, id) {
+    this.title = title;
+    this.price = price;
+    this.description = description;
+    this.imageUrl = imageUrl;
+    this._id = id;
+  }
+save method 변경
+
+save() {
+    let dbop;
+    if (this._id) {
+      dbop = db.collection("products").updateOne({ _id: new mongodb.ObjectId(this._id) }, { $set: this });
+    } else {
+    }
+    dbop = getDb();
+    return dbop
+      .collection("products")
+      .insertOne(this)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+
+// controller
+
+exports.postEditProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  const updatedTitle = req.body.title;
+  const updatedPrice = req.body.price;
+  const updatedImageUrl = req.body.imageUrl;
+  const updatedDesc = req.body.description;
+
+  const product = new Product(
+    updatedTitle,
+    updatedPrice,
+    updatedDesc,
+    updatedImageUrl,
+    new ObjectId(prodId) // mongodb =require('mongodb')
+  );
+  product
+    .save()
+    .then(result => {
+      console.log('UPDATED!');
+      res.redirect('/admin/products');
+    })
+    .catch(err => console.log(err));
+};
+
+
+// class Product id 수정
+
+this._id = id ? mongodb.ObjectId(id) : null;
+
+자연히 save method부분 도 수정
+
+delete 생성
+
+static delete(id) {
+    const db = getDb();
+    return db
+      .collection("products")
+      .deleteOne({ _id: new mongodb.ObjectId(id) })
+      .then((res) => console.log(res))
+      .catch((err) => console.err(err));
+  }
+}
+
+
+```
+
+### mock user
+
+```js
+const mongodb = require("mongodb");
+const getDb = require("../util/database").getDb;
+
+class User {
+  constructor(username, email) {
+    this.username = username;
+    this.email = email;
+  }
+
+  save() {
+    const db = getDb();
+    return db.collection("user").insertOne(this);
+  }
+  static findUserId(id) {
+    const db = getDb();
+    return db
+      .collection("user")
+      .find({ _id: new mongodb.ObjectId(id) }) // 확실하다면 findOne 메서드 사용
+      .next()
+      .then((res) => console.log(res))
+      .catch((err) => console.err(err));
+  }
+}
+
+app.js;
+
+app.use((req, res, next) => {
+  User.findUserId("6332abc2cc740c5a3ec8309e")
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+
+class Product {
+  constructor(title, price, description, imageUrl, id, userid) {
+    this.title = title;
+    this.price = price;
+    this.description = description;
+    this.imageUrl = imageUrl;
+    this._id = id ? mongodb.ObjectId(id) : null;
+    this.userid = userid;
+  }
+
+postAddproduct 수정
+
+const product = new Product(title, price, description, imageUrl, null, req.user._id);
+
+app.js 에서 user 를 넣어놨음으로.
+
+이거근데 안되가지고 중간에 고생좀했다 depth 틀린듯
+
+```
