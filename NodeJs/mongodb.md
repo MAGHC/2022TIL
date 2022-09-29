@@ -317,3 +317,96 @@ app.js 에서 user 를 넣어놨음으로.
 이거근데 안되가지고 중간에 고생좀했다 depth 틀린듯
 
 ```
+
+### user 에 cart 추가
+
+```js
+class User {
+  constructor(username, email, cart, id) {
+    this.name = username;
+    this.email = email;
+    this.cart = cart;
+    this._id = id;
+  }
+// 유저 class 수정 id, 카트생성
+  save() {
+    const db = getDb();
+    return db.collection("user").insertOne(this);
+  }
+
+  addTocart(product) {
+    // const cartProduct = this.cart.items.findIndex((cp) => {
+    //   return cp._id === product.id;
+    // });
+    product.quantity = 1;//수량 생성
+    const upddatedCart = { items: [{ ...product, quantity: 1 }] };
+    const db = getDb();
+    db.collection("user").updateOne({ _id: new ObjectId(this._id) }, { $set: { cart: upddatedCart } });
+  }
+
+
+목유저 생성 부분도 변경
+
+app.use((req, res, next) => {
+  User.findById()
+    .then((user) => {
+      req.user = new User(user.name, user.email, user.cart, user._id);
+      console.log(user);
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+
+//컨트롤 /shop.js / post cart
+
+exports.postCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.findById(prodId).then((prod) => {
+    return req.user.addTocart(prod);
+  });
+};
+
+
+//수량 업데이트
+
+수량업데이트
+
+addTocart(product) {
+    const cartProductIndex = this.cart.items.findIndex((cp) => {
+      return cp._id === product.id;
+    });
+    let updateQuantity = 1;
+    if (product >= 0) {
+      updateQuantity = this.cart.items[cartProductIndex].quantity + 1;
+    }
+    product.quantity = 1;
+    const upddatedCart = { items: [{ ...product, updateQuantity: 1 }] };
+    const db = getDb();
+    return db.collection("user").updateOne({ _id: new ObjectId(this._id) }, { $set: { cart: upddatedCart } });
+  }
+
+  get cart
+
+getCart() {
+    const db = getDb();
+    const productIds = this.cart.items.map(i => {
+      return i.productId;
+    });
+    return db
+      .collection('products')
+      .find({ _id: { $in: productIds } })//모든 매칭되는 카트
+
+      .toArray()
+      .then(products => {
+        return products.map(p => {
+          return {
+            ...p,
+            quantity: this.cart.items.find(i => {
+              return i.productId.toString() === p._id.toString();
+            }).quantity
+          };
+        });
+      });
+  }
+
+```
