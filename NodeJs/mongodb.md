@@ -410,3 +410,28 @@ getCart() {
   }
 
 ```
+
+//삭제
+
+```js
+deleteFromCart(productid) {
+    const updatedCart = this.cart.items.filter((item) => {
+      return item.productId.toString() !== productid.toString();
+    }); //맞는거만 지우고 나머지를 다 리턴
+
+    const db = getDb();
+    return db.collection("user").updateOne(
+      { _id: new ObjectId(this._id) },
+      {
+        $set: {
+          cart: {
+            items: updatedCart,
+          },
+        },
+      }
+    );
+  }
+
+하고 컨트롤러에서 getCart 다시한번 실행
+
+```
