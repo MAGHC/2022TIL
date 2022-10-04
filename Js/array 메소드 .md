@@ -102,3 +102,40 @@ depth 를 지정해야된다면 flat을 따로 사용해야됨
 유사 배열 객체 를 받아 배열로 만듦
 
 set => from 으로 중복 제거 간단히 할 수 있음 for 문 안쓰고도
+
+### 복습 및 추가 사항
+
+```js
+let arr = ['a','b','c','d','e','f','g']
+
+arr.slice(2)// 잘라진 new array 배출 ['c','d','e','f','g']
+arr.slice(-1) // 'g' 항상 맨마지막.
+
+//slice => 원본 배열을 건드리지않음
+
+arr.splice(2)//잘라진 어레이 배출
+
+//splice = > 원본을 건드림 인자순서대로 삭제시작 // 삭제 갯수 // 추가할 요소
+
+
+reverse() // 원본 건드림
+
+join('-') // 구분자 넣어서 합침
+
+
+at() // 2022 새로운 문법  [] 으로 접근 안하고 ()로접근 + 문자열에서도 사용가능
+
+arr[1]= arr.at(1)  //at method 가 브라켓보다 유용한점 ? => arr.[arr.lengt-1] = arr.slice(-1)[0] = arr.at(-1)
+
+아하
+
+forEach() // item // index/ array   entries 로 구조분해할당 구현하던걸 그냥 구현 가능
+
+
+for(const[i,item] of arr.entries()){
+console.log(${i} , ${item})}
+
+arr.forEach((item,i,arr)=>{
+console.log(${i},${item})})
+
+```
