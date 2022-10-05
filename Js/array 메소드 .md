@@ -139,3 +139,20 @@ arr.forEach((item,i,arr)=>{
 console.log(${i},${item})})
 
 ```
+
+### forEach 를 Map 과 Set에 썼을때
+
+```js
+
+const mockMap = new Map(["kim","jungsoo"],["kim","soojung"],["lee","lee"])
+
+mockMap.forEach((value,key,map)=>{
+console.log(`${key}:${value}`)}) // kim:jungsoo      kim:soojung   lee:lee
+
+
+const mockSet = new Set(['2','3','5'])
+
+mockSet.forEach((value,key, map)=>{console.log(`${key}:${value}`)})//2:2 3:3 5:5
+
+? set에는 키가 없기때문
+```
