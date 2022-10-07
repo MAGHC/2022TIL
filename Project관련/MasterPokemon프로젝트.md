@@ -31,3 +31,47 @@ node 배울때 사실 form 에 action 가지고 엔드포인트 설정하고 met
 그땐 axios 를썼던게 기억나서axios 썼더니 귀신같이 해결됬다
 
 cors를 잘 몰라서 일어난 일인거같기도하다 . 이거하다가 어제 하루 다 날라갔지만 재미있었음
+
+### node js require vs import
+
+갑자기 궁금했다 생각해보니 둘다 js 라 import 도 쓸수있을텐데 차이점이 뭘까?
+
+검색해서 찾아봤다.
+
+그중에서 스택오버 플로우에 나랑 비슷한 의문을 가진 사람을 비슷한 예제로 찾은거 같아서 가져왔다 추천도 많고 1달전이네
+
+[https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x](https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x)
+
+**require로 필요한 부분만 선택적으로 로드할 수는 없지만 import를 사용하면 필요한 부분만 선택적으로 로드할 수 있어 메모리를 절약할 수 있습니다. 로드는 동기식(단계별)으로 요구되는 반면 가져오기는 비동기식일 수 있으므로(이전 가져오기를 기다리지 않고) 요구사항보다 약간 더 잘 수행할 수 있습니다.**
+
+앞으론 import 를 써야되겠네 그럼
+
+애초에 es6 문법이 import
+
+그런 이유로 require 를 import로 다 바꾸기로했다 근데 ㅋ 진짜 별거아닐줄알았는데 엄청나게 시간을 써먹었다.
+
+아니 내착각이고 사실 별로 안쓴것일수도 하여간
+
+```js
+
+"type": "module",
+
+쓰려면 pacagke.json 에 type:"module" 추가해줘야 됨
+"name": "todos-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+
+```
+
+근데 안됬다 그러니까 다른 lib 들은 import 가 잘됬는데 내가 생성한 파일들이 import 가 안됬다
+
+에러메세지 하는말이 did you mean ../ ? 하면서 경로 틀린거아니냐고했는데 전혀 아니였다
+
+한참 해맸다 근데 결국.... 검색하다가 찾아냈다
+
+노드 js 의 import 를 위해서는 경로에 확장자까지 적어줘야된다고..
+
+이는 브라우저에서 import
+가 작동하는 방식과 맞추기 위해서 의도적으로 설계된 부분이라고 한다...

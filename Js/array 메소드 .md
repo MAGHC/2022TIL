@@ -87,7 +87,55 @@ b를 계속 리턴 시킴 a에다가 누적
 
 .reduce((a,b)=>{},0)
 
-,0 의 경우는 이니셜 밸류 를 설정해주는거 처음 a 값이라고 나는 이해함
+const array = [4,5,5,12,412,421,241,214]
+
+console.log(array.reduce((acc,cur)=>{
+console.log(acc,cur)
+return acc+cur
+}))
+
+4 5
+9 5
+14 12
+26 412
+438 421
+859 241
+1100 214
+1314
+
+console.log(array.reduce((acc,cur)=>{
+console.log(acc,cur)
+return acc+cur
+},0))
+
+0 4
+4 5
+9 5
+14 12
+26 412
+438 421
+859 241
+1100 214
+1314
+
+결과는 같네
+
+const initalValue = 0
+
+for(i of array) initalValue += i // 와 같다
+
+const max = array.reduce((acc,cur)=>{
+if(acc>mov)
+return acc;
+else
+return mov;
+}, array[0]) // 초기값을 0을 넣지말고 array[0] 을넣어라 안그러면 예상한대로 작동하지 않을수도있음
+
+mdn: 누산기는 콜백의 반환값을 누적합니다. 콜백의 이전 반환값 또는, 콜백의 첫 번째 호출이면서 `initialValue`
+를 제공한 경우에는 `initialValue`
+의 값입니다.
+
+그래서 저렇게 작동하는것.
 
 ### map flat
 
