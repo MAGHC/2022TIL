@@ -59,3 +59,21 @@ rotuer.get('/',auth, adiminRouter.getAdmin) 같은형태로 넣으면 auth 걸�
 
 
 ```
+
+### csrf 사용
+
+npm install —save csurf
+
+```js
+const csrf = require("csurf");
+
+const csrfProtection = csrf();
+
+app.use(csrfProtection);
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+```
