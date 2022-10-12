@@ -145,6 +145,20 @@ Map 메서드를 통해 생성된 새로운 배열을 평탄화한다.
 
 depth 를 지정해야된다면 flat을 따로 사용해야됨
 
+```js
+const arr = [[1, 2, 3], 12, [2, 3, 4]];
+
+arr.flat(); //[1,2,3,12,2,3,4]
+
+const arrDeep = [[[12, 3], 4], 4, , 4, 12]; // flat()=> 한단계만 없앰 flat(2) 해야 동등
+
+//flat map => flat이랑 map 합친거 ;  주의할점은 flat() 처럼 deepth를 설정할수없고 한단계만
+
+Array.from({ legnth: 7 }, () => 1); //이렇게 옵션 쓸수있다. ()=>1 은 fill 과 동일
+
+Array.from({ length: 7 }, (cur, i) => i + 1); // map method 의 것과 동일
+```
+
 ### from
 
 유사 배열 객체 를 받아 배열로 만듦
