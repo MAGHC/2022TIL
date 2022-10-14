@@ -94,8 +94,10 @@ cors를 잘 몰라서 일어난 일인거같기도하다 . 이거하다가 어�
 
 프로젝트 최상위 폴더 (클라이언트, 서버가 다보이는곳 ) 에서
 
-```jsx
+```
+
 git rm --cached . -rf
+
 ```
 
 명령어를 통해 캐시되어있는 스테이징 파일을 지워야된다.
@@ -103,3 +105,29 @@ git rm --cached . -rf
 그 뒤 git add / commit / push 를 하면 정상적으로 돌아온것을 볼 수 있다.
 
 브랜치를 따로 파야되는건가 하면서 별 쌩쇼를 다했다 새로 밀어야되나... 하면서
+
+### 레이아웃 문제
+
+사실 금방해결해서 적을 필요가 있을 까 싶었는데 그냥 적기로했다.
+
+router 만들고 나서 오랜만에 정석적으로 nav footer 를 만들어 넣을려고 하는데 생각해보니
+
+이거 어디다가 넣어야되지? routers에 넣으니 routes 가아니라고 난리고
+
+근데 그렇게 오래 고찰이 필요하진 않았다 이미 써본적은없어도
+
+context api로 로그인 state 구현하다가
+
+outlet이라는것의 존재를 알고있었기때문에
+
+[https://reactrouter.com/en/main/components/outlet](https://reactrouter.com/en/main/components/outlet)
+
+공식문서에서 말하길
+
+부모 라우트 엘레멘트에서 사용해야되고 자식 라우트들을 랜더링 해준다고.
+
+### link 컴포넌트 styled-component 로 스타일링
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c9d2ba73-9347-4bc9-9933-f6d0c9c7e2cf/Untitled.png)
+
+a 로 하면됬다 이것도 특별히 어떤 시간이 걸린 해결은 아니였지만 기록
