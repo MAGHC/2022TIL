@@ -96,3 +96,27 @@ console.log(box[0])}
 확장성 측면에서 아주 좋다.
 
 동일한 예측은 매우 훌룡한것.
+
+### 빅오 예제
+
+```js
+function challenge() {
+  let a = 10; // o(1)
+  a = 50 + 3; // o(1)
+
+  for (let i = 0; i < input.length; i++) {
+    // o(n)
+
+    anotherFunction(); //o(n)
+    let starnger = true; //o(n)
+    a++; //o(n)
+  }
+  return a; //o(1)
+}
+```
+
+⇒ 3+4n
+
+BIG O(3+4n)
+
+사실 이건 그냥 O(n)

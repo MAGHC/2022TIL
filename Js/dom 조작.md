@@ -32,3 +32,15 @@ title.addEventListenr("읽을 이벤트",()=>{}) 그냥 화살표함수로 바�
 ### setAttributes
 
 h1.setAttributes('class','title') //<h1 class="title'><h1>
+
+### 이벤트리스너 forEach
+
+ul 안에있는 li들을 이벤트를 줄때 보통 forEach 문으로 처리하곤하는데
+
+이는 좋은 방법이아니다.
+
+ul 을 잡은다음
+
+ul에 이벤트리스너를 놓고 이벤트 타겟의 태그이름이 맞다면? 으로 진행
+
+if(event.target.tagName == "Li")

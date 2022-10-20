@@ -131,3 +131,40 @@ outlet이라는것의 존재를 알고있었기때문에
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c9d2ba73-9347-4bc9-9933-f6d0c9c7e2cf/Untitled.png)
 
 a 로 하면됬다 이것도 특별히 어떤 시간이 걸린 해결은 아니였지만 기록
+
+### styleComponent props 스타일링
+
+```js
+<Wrap ref={navRef} toggle={scrollStyle}>
+
+이렇게 하면 styled 안에서도 볼수있겠지 하고 props 확인할려고했는데
+
+정말 되서 신기했다.
+
+const Wrap = styled.div`
+  width: 100%;
+  ${(props) => {
+    console.log(props);
+  }}
+`;
+
+```
+
+### 타입스크립트 변환 과정 에러
+
+'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
+
+ts로 전환하니까 떴다
+
+react를 임포트하니까 해결된다
+
+엠병할거담부턴 ts로 바로 생성해야지
+
+ts로 변환하니 props 부분이 에러가났다.
+
+```js
+const Wrap = styled("div")<{ toggle: boolean }>`
+
+styled 함수로 바꾸고 <제네릭>
+
+```
