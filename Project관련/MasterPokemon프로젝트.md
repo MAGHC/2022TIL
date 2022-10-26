@@ -204,3 +204,11 @@ git commit --amend 하면된다.
 난 다행히 오래된 커밋의 경우가 아니였음으로 이렇게 해결
 
 물론 오래된것도 방법은 있으나 force 로 날린다는것의 부담이 나의경우엔 상당하기때문에 걍 커밋 날리고 바로 확인하는게 낫지않을까 싶다
+
+### [node] code: ERR_HTTP_HEADERS_SENT 에러
+
+res.send 두번하면 나오는 에러
+
+sendStatus 로 스테이터스보내고 뒤에 send 한번 더했더니 이 에러떴다.
+
+그래서 그냥 { status: "200", message: "성공" } 로 한번에 보내기로함
