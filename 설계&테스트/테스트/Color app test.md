@@ -71,3 +71,24 @@ expect(colorBtn.textContent);
 break
 
 그래서 테스트 마다 하나의 단언을 두는게 좋지만 기능 테스트에선 실용적이지않다.
+
+### checkbox check 상태 테스트해보기
+
+expect(checkBox).not.toBeChecked();
+
+not 을 붙이면 단언을 부정한다.
+
+```js
+test("initial conditions", () => {
+  render(<Color />);
+  // 버튼 활성화 상태로 시작하는지 확인
+
+  const colorBtn = screen.getByRole("button", { name: "색상변경" });
+
+  expect(colorBtn).toBeEnabled();
+
+  // 체크박스 시작상태 확인
+  const checkBox = screen.getByRole("checkbox");
+  expect(checkBox).not.toBeChecked();
+});
+```
