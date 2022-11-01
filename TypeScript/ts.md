@@ -104,3 +104,80 @@ enum Role{ADMIN=5,READ_ONLY,AUTHOD};
 ```
 
 이넘의 강점 : 백그라운드에 매핑된 값이 있는 식별자가 필요할때 훌룡한 구성
+
+### 유니언타입
+
+유니언 타입
+
+서로 다른 두 종류의 값을 사용해야 하는 애플리케이션에서
+
+함수나 상수 혹은 변수의 매개변수를 사용해야된다면 유니언 타입을 사용하여 타입스크립트에게
+
+숫자나 문자열 중 하나를 사용해도된다는 걸 알릴수있다.
+
+```ts
+function add(n1: number, n2: number) {
+  const result = n1 + n2;
+  return result;
+}
+
+
+function add(n1: number|string, n2: number|string) {//이런식으로해결
+  const result = n1 + n2;//하면 여기서 에러가 남
+  return result;
+}
+
+
+typeof 로 해결
+
+
+function add(n1: number|string, n2: number|string) {
+let result
+if(typeof n1==="number" && typeof n2==="number")result = n1+n2
+else result = n1.toString() + n2.toString()
+
+return result
+
+}
+
+```
+
+### 리터럴 타입
+
+```ts
+
+정확한 값을 가지는  타입
+
+const number1 =2 ;
+
+위에 마우스 올리면 number1:number 로 추론하는 것이 아닌
+
+number1:2
+
+이런식으로 명시적으로 뜬다.
+
+이걸 유니온 으로 구현했던 add 함수 에 활용
+
+
+function add(n1: number | string, n2: number | string, resultConversion: string) {
+  if (resultConversion === "isString") return n1.toString() + n2.toString();
+  if ((typeof n1 === "number" && typeof n2 === "number") || resultConversion === "isNumber") return +n1 + +n2;
+}
+
+
+
+function add(n1: number | string, n2: number | string, resultConversion: "isString" | "isNumber") {
+이런식으로 혼재도 가능
+```
+
+### 타입 alias
+
+```ts
+type Combinable = number | string; //별칭으로 하고자하는 타입을 지정
+type ResultConversion = "isNumber" | "isString";
+
+function add(n1: Combinable | string, n2: Combinable | string, resultConversion: ResultConversion) {
+  if (resultConversion === "isString") return n1.toString() + n2.toString();
+  if ((typeof n1 === "number" && typeof n2 === "number") || resultConversion === "isNumber") return +n1 + +n2;
+}
+```
