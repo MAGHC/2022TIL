@@ -181,3 +181,36 @@ function add(n1: Combinable | string, n2: Combinable | string, resultConversion:
   if ((typeof n1 === "number" && typeof n2 === "number") || resultConversion === "isNumber") return +n1 + +n2;
 }
 ```
+
+### void
+
+```js
+function add(n1: number, n2: number): string {
+  //return type 작성 :void (아무것도 반환하지않음)
+  return n1.toString() + n2;
+}
+
+//void 함수를 console.log()하면 undefined 가 나온다 .
+//타입스크립트에서는 undefined 를 타입으로 사용할수있다.  let someVale:undefined
+
+//하지만 function 반환값을 :undefined 를 하면 에러가뜸 타입스크립트는 다르게 여김
+
+
+function의 반환값을 undefined 로해놓고 아무런 에러가 발생하지않게 하고싶다면
+
+그냥 return 으로끝내면됨
+
+function console():undefined{
+console.log('hi');
+return;
+}
+
+void 도 가능
+
+function voi():void{
+console.log('hi')
+return;
+}
+
+결론적으로 값을 사용하지않는함수는 void를 일반적으로 사용하며,그로인해 타입스크립트가 타입을 인지할수있다
+```
