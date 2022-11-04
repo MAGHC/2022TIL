@@ -25,3 +25,15 @@ commit 하는 방식으로 작업이 가능했다
 나눌때 윈도우는 컨트롤 / 하면 알아서 코멘트 가 생성됨
 
 <!--  --> 이거
+
+### npm install
+
+이걸 사실 근데 나중에 써먹을 일이 있을지 모르겠는데
+
+## package.json 에 안올리고 npm install 하는 방법이있다.
+
+--no-save
+
+https://xtring-dev.tistory.com/11
+
+여기글 참조

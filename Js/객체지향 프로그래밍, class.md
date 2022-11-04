@@ -97,4 +97,40 @@ this.price = price;
 
 new 키워드는 constructor 메서드를 호출하고 새로운 인스턴스를 리턴해준다
 
+### 구현하면서 느낀점
 
+static 의 경우 밖에서 선언이 불가능하다 당연하다 정적메서드니까
+
+프로토타입으로도 안된다 인스턴스 할때 아예 할당이안됨
+
+```js
+
+class App(){
+    static hi(){
+        console.log('hi')
+    }
+}
+
+console.log(App.hi())// 로 사용
+
+```
+
+한가지 유의해야될것은 static 메서드로는 constructor 의 this. 값에 접근할수가없다
+
+```js
+class App(){
+
+constructor(){
+    this.value=false;
+
+}
+
+static hi(){
+    this.value = true;// 로하면 생성자의 밸류가 바뀌는게 아니라 hi 안에 this.value 가 따로 생긴다. 뭔짓을 해도 생성자 함수에 있는 value 에는 접근할수없음
+}
+
+}
+
+```
+
+말 그대로 밖에있는 값에도 접근할수없고 그저 클래스안에서 만 쓴다는걸 이런 우여곡절을 통해 알았다.
