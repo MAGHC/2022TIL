@@ -134,3 +134,13 @@ static hi(){
 ```
 
 말 그대로 밖에있는 값에도 접근할수없고 그저 클래스안에서 만 쓴다는걸 이런 우여곡절을 통해 알았다.
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes/Private_class_fields
+
+private static fields 에 대한 추가 자료
+
+여담인데 나는 내가 이렇게 mdn을 봐가면서 공부할거라곤 ; 상상도못했다 근데 재밌네
+
+같은 정적 메서드 끼리는 this 로 부를수있다.
+
+자연히 캡슐화와 private 에 대해서도 다시한번 상기했다.
