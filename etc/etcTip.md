@@ -30,10 +30,14 @@ commit 하는 방식으로 작업이 가능했다
 
 이걸 사실 근데 나중에 써먹을 일이 있을지 모르겠는데
 
-## package.json 에 안올리고 npm install 하는 방법이있다.
+### package.json 에 안올리고 npm install 하는 방법이있다.
 
 --no-save
 
 https://xtring-dev.tistory.com/11
 
 여기글 참조
+
+### ls - al
+
+숨김파일 까지 보는 터미널 명령어
