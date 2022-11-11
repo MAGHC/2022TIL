@@ -35,3 +35,11 @@ const a = function(){
 ### 사용자 경험 개선을 위한
 
 focus() 같은 함수를 기억하고 써먹도록
+
+### eslint
+
+npx eslint --init 으로 써먹을수있으며
+
+air-bnb 따로 안깔아도 여기서 popular convention 설정가능
+
+eslintrc.js 에서 rule 추가하면 덮어씌워져서 추가한 컨벤션 사라지니까 유의

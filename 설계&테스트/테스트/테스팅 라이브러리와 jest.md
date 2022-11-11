@@ -81,3 +81,8 @@ mocha나 jasmine 같은것들이있지만 cra에서는 jest를 권장한다.
 단언부가 통과되면 pass 아니면 에러
 
 그렇기때문에 빈 테스트도 통과되어야한다.
+
+### jest의 matcher
+
+toBe() 엄격일치비교
+toEqual() deep equality 비교
