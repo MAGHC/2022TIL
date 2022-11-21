@@ -44,3 +44,39 @@ https://www.youtube.com/watch?v=b72mDco4g78
 메인에 푸쉬하기보단
 
 cherrypick 브랜치를 생성해서 브랜치 푸쉬후 pr을 남겨 머지를 시킨다.
+
+### fork 한 레파지토리 최신 화 시키기
+
+업스트림 설정으로 최신화 시킬수있다.
+
+git remote add origin 마냥 추가 가능
+
+git remote add upstream 주소
+
+git fetch upstream 하면
+
+새로운 브랜치가생긴다.
+
+그럼 그 브랜치를 merge
+
+물론 내가 작업하는 브랜치에서도 merge
+
+### stash
+
+임시 스테이징 저장
+
+rebase할때 스테이징 커밋하라고 난리치면 써먹는다
+
+git stash apply 로 다시 가져올 수 있음
+
+### 커밋지우기
+
+git reabse -i 지우려고하는커밋의 직전커밋.
+
+그리고 여러개 지울수도있고 맨위에꺼 drop 하고
+
+이미 커밋이 올라가있다면 git push origin -f 로 강제로 보낸다.
+
+### 커밋 수정하기
+
+git commit --amend 로 가장 최신 커밋을 수정할수있다.
