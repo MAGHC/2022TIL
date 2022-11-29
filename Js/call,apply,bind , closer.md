@@ -73,7 +73,7 @@ newbook 은 eurowings를 bind 한 새로운 함수다.
 
 
 newbook(23,'kim') 하면된다.
-
+ m
 유용한것은 전에 배웠듯이 인수 의 기본값을 설정할 수 도있다.
 
 const newbook = book.bind(eurowings , 23)
