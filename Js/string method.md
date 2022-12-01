@@ -225,6 +225,9 @@ const translateFirst = (word) => {
 console.log(translateFirst("kim jung soo"));
 
 
+padEnd 메서드의경우 글자길이 가 초과된다면 그냥 원래 글자를 그대로 내뱉는다. 고로 길다면 slice 해서 쓰거나
+
+어떤 글자를 채워쓴다고할떄 while 보다 쉽게 쓸수있다.
 
 string.padStart(24,"+")
 
