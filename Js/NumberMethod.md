@@ -29,6 +29,10 @@ isNaN("123ABC"); // 참: parseInt("123ABC")는 123이지만 Number("123ABC")는 
 isNaN(""); // 거짓: 빈 문자열은 NaN이 아닌 0으로 변환됩니다
 isNaN(" "); // 거짓: 공백이 있는 문자열은 NaN이 아닌 0으로 변환됩니다
 
+Number.isNaN(23/0) //0으로나누는것은 무한을 준다 그래서 infinity 를 뱉는데 false 로나온다
+
+그래서 숫자를 판별하기에 온전하진않다
+
 ## toFixed()
 
 https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
@@ -48,3 +52,21 @@ numObj.toFixed(6); // Returns '12345.678900': 빈 공간을 0으로 채웁니다
 2.35.toFixed(1); // Returns '2.4'. 이 경우에는 올림을 합니다.
 -2.34.toFixed(1); // Returns -2.3 (연산자의 적용이 우선이기 때문에, 음수의 경우 문자열로 반환하지 않습니다...)
 (-2.34).toFixed(1); // Returns '-2.3' (...괄호를 사용할 경우 문자열을 반환합니다.)
+
+### parseInt, parseFloat
+
+```js
+Number.parseInt('2.5rem'); //2
+
+Number.parseFloat('2.5rem'); //2.5
+```
+
+문자열에서 값을 읽을떄는 parseFloat 가 좋을것이다.
+
+### isFinite
+
+전역 함수는 주어진 값이 유한수인지 판별합니다. 필요한 경우 매개변수를 먼저 숫자로 변환합니다
+
+이걸 무한대가 나오면 false로 나옴
+그래서 이것이 숫자를 확인하는데 궁극의 방법이다.
+정수만쓴다는 확신이있다면 isInteger 를 쓰면된다.
