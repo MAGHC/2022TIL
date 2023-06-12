@@ -22,7 +22,7 @@ class Person
 
 ```js
 if (1 <= left && right <= 400 && right === left + 1) 가;
-테스트;
+
 
 if (left >= 1 && right <= 400 && right === left + 1) 이렇게;
 ```
